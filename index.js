@@ -4,6 +4,7 @@ import { buscarConsulta } from './DAO/consulta/buscar_consulta.js'
 import { buscarAgendamento } from './DAO/agendamento/buscar_agendamento.js'
 import { buscarEspecialidade } from './DAO/especialidade/buscar_especialidade.js'
 import { buscarMedico } from './DAO/medico/buscar_medico.js'
+import { incluirMedico } from './DAO/medico/inserir_medico.js'
 
 const app = express()
 
@@ -44,4 +45,45 @@ app.get('/medico', async (req, res) => {
 // Inicialização do Servidor
 app.listen(3000, () => {
   console.log('🚀 Server is running on http://localhost:3000')
+})
+
+
+
+// post
+
+app.post('/paciente', async (req, res) => {
+  let { nome, endereco, telefone, doencasPrevias, remedioDeUsoContinuo  } = req.body
+
+  console.log(crm, nome, endereco, telefone, numeroRegistro)
+  res.send(crm, nome, endereco, telefone, numeroRegistro)
+})
+
+
+app.post('/medico', async (req, res) => {
+  let { crm, nome, endereco, telefone, numeroRegistro } = req.body
+
+  console.log(crm, nome, endereco, telefone, numeroRegistro)
+  let resp = await incluirMedico(infos)
+  res.send(resp)
+})
+
+app.post('/consulta', async (req, res) => {
+  let {  data, hora, numeroBeneficiario, crm, numeroAgendamento} = req.body
+
+  console.log( data, hora, numeroBeneficiario, crm, numeroAgendamento)
+  res.send( data, hora, numeroBeneficiario, crm, numeroAgendamento)
+})
+
+app.post('/especialidade', async (req, res) => {
+  let { nome, publicoAlvo} = req.body
+
+  console.log( nome, publicoAlvo)
+  res.send( nome, publicoAlvo)
+})
+
+app.post('/agendamento', async (req, res) => {
+  let { data, hora, queixa, gravidade} = req.body
+
+  console.log( data, hora, queixa, gravidade)
+  res.send( data, hora, queixa, gravidade)
 })
