@@ -8,7 +8,8 @@ async function conexao() {
         port: 3306,
         user: 'root', 
         password: '1234', 
-        database: 'clinica_medica'
+        database: 'clinica_medica',
+        connectTimeout: 5000
     })
     return pool
 } // <-- Fechando a função conexao

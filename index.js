@@ -1,4 +1,5 @@
 import express from 'express'
+import { testarConexao } from './DAO/conexao.js'
 import { buscarPacientes} from './DAO/paciente/buscar_paciente.js'
 import { buscarConsulta } from './DAO/consulta/buscar_consulta.js'
 import { buscarAgendamento } from './DAO/agendamento/buscar_agendamento.js'
@@ -7,6 +8,8 @@ import { buscarMedico } from './DAO/medico/buscar_medico.js'
 import { incluirMedico } from './DAO/medico/inserir_medico.js'
 import { incluirEspecialidade } from './DAO/especialidade/inserir_especialidade.js'
 import { incluirPaciente } from './DAO/paciente/inserir_paciente.js'
+import { incluirConsulta } from './DAO/consulta/inserir_consulta.js'
+import { incluirAgendamento } from './DAO/agendamento/inserir_agendamento.js'
 
 
 const app = express()
@@ -48,6 +51,7 @@ app.get('/medico', async (req, res) => {
 // Inicialização do Servidor
 app.listen(3000, () => {
   console.log('🚀 Server is running on http://localhost:3000')
+  testarConexao()
 })
 
 
@@ -88,7 +92,12 @@ app.post('/consulta', async (req, res) => {
   let {  data, hora, numeroBeneficiario, crm, numeroAgendamento} = req.body
 
   console.log( data, hora, numeroBeneficiario, crm, numeroAgendamento)
-  res.send( data, hora, numeroBeneficiario, crm, numeroAgendamento)
+
+  let infos = [data, hora, numeroBeneficiario, crm, numeroAgendamento]
+
+  let resp = await incluirConsulta(infos)
+
+  res.send(resp)
 })
 
 app.post('/especialidade', async (req, res) => {
@@ -109,5 +118,10 @@ app.post('/agendamento', async (req, res) => {
   let { data, hora, queixa, gravidade} = req.body
 
   console.log( data, hora, queixa, gravidade)
-  res.send( data, hora, queixa, gravidade)
+
+  let infos = [data, hora, queixa, gravidade]
+
+  let resp = await incluirAgendamento(infos)
+
+  res.send(resp)
 })

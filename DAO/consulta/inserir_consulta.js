@@ -1,10 +1,10 @@
 import { conexao } from '../conexao.js'
 
-async function incluirEspecialidade(infos) {
+async function incluirConsulta(infos) {
 
     const data = [infos]
 
-    const sql = `INSERT INTO tbl_especialidade (nome, publicoAlvo) VALUES ?`
+    const sql = `INSERT INTO tbl_consulta (data, hora, numeroBeneficiario, crm, numeroAgendamento) VALUES ?`
 
     const conn = await conexao()
 
@@ -23,4 +23,4 @@ async function incluirEspecialidade(infos) {
     }
 }
 
-export { incluirEspecialidade }
+export { incluirConsulta }

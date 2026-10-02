@@ -3,7 +3,7 @@ import {conexao} from '../conexao.js'
 
 async function buscarMedico(){
   console.log('DAO de CLIENTE')
-    const sql = `SELECT * FROM tbl_consulta;`
+    const sql = `SELECT * FROM tbl_medico;`
     
     const conn = await conexao()
     try {
@@ -18,7 +18,7 @@ async function buscarMedico(){
 
 // nao ultilizado 
 async function buscarMedicos(codigo){
-    const sql = `SELECT * FROM  tbl_consulta WHERE codigo = ?`
+    const sql = `SELECT * FROM  tbl_medico WHERE codigo = ?`
     
     const conn = await conexao()
     

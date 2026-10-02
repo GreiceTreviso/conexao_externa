@@ -18,7 +18,7 @@ async function buscarConsulta(){
 
 // nao ultilizado 
 async function buscarConsultas(codigo){
-    const sql = `SELECT * FROM  tbl_consulta WHERE codigo = ?`
+    const sql = `SELECT * FROM  tbl_consulta WHERE numeroConsulta = ?`
     
     const conn = await conexao()
     

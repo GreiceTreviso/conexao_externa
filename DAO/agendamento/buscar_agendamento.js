@@ -18,7 +18,7 @@ async function buscarAgendamento(){
 
 // nao ultilizado 
 async function buscarAgendamentos(codigo){
-    const sql = `SELECT * FROM  tbl_agendamentoWHERE codigo = ?`
+    const sql = `SELECT * FROM  tbl_agendamento WHERE numeroAgendamento = ?`
     
     const conn = await conexao()
     
